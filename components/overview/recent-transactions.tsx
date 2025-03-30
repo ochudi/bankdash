@@ -7,7 +7,7 @@ import { BsCoin } from "react-icons/bs";
 const RecentTransactions = () => {
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex items-center justify-between">
+      <div className="flex">
         <h2 className="text-xl font-semibold">Recent Transactions</h2>
       </div>
       <Card className="w-full min-w-[265px] lg:min-w-[350px] min-h-[235px] align-middle items-center justify-center pt-5 px-[10px]">
