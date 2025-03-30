@@ -1,12 +1,13 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface CardDisplayProps {
-  balance: string
-  cardHolder: string
-  cardNumber: string
-  validThru: string
-  variant?: "blue" | "white" | "dark"
-  className?: string
+  balance: string;
+  cardHolder: string;
+  cardNumber: string;
+  validThru: string;
+  variant?: "blue" | "white" | "dark";
+  className?: string;
 }
 
 export function CardDisplay({
@@ -20,11 +21,12 @@ export function CardDisplay({
   return (
     <div
       className={cn(
-        "rounded-xl p-5 w-full max-w-sm aspect-[1.6/1] flex flex-col justify-between",
-        variant === "blue" && "bg-primary text-primary-foreground",
+        "rounded-xl p-5 w-full min-w-[265px] lg:min-w-[350px] max-w-sm aspect-[1.6/1] flex flex-col justify-between min-h-[235px]",
+        variant === "blue" &&
+          "bg-[linear-gradient(107deg,#4C49ED_2.61%,#0A06F4_101.2%)] dark:bg-[linear-gradient(107deg,#6A67F2_2.61%,#3A37D0_101.2%)] text-primary-foreground",
         variant === "white" && "bg-card text-card-foreground border",
         variant === "dark" && "bg-slate-800 text-slate-100 dark:bg-slate-950",
-        className,
+        className
       )}
     >
       <div className="flex justify-between items-start">
@@ -32,13 +34,19 @@ export function CardDisplay({
           <p className="text-xs opacity-80">Balance</p>
           <p className="text-xl font-bold">{balance}</p>
         </div>
-        <div className="h-8 w-8 rounded bg-white/20 flex items-center justify-center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="6" width="18" height="13" rx="2" stroke="currentColor" strokeWidth="2" />
-            <path d="M3 10H21" stroke="currentColor" strokeWidth="2" />
-            <path d="M7 15H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            <path d="M15 15H17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+        <div className="">
+          <Image
+            src="/svg/cardChip.svg"
+            alt="Logo"
+            width={34}
+            height={34}
+            className={cn(
+              variant === "blue" && "",
+              variant === "white" && "brightness-75",
+              variant === "dark" && "",
+              className
+            )}
+          />
         </div>
       </div>
 
@@ -57,12 +65,21 @@ export function CardDisplay({
         <div className="flex items-center justify-between">
           <p className="font-medium tracking-wider">{cardNumber}</p>
           <div className="flex -space-x-2">
-            <div className="h-6 w-6 rounded-full bg-red-500/80"></div>
-            <div className="h-6 w-6 rounded-full bg-yellow-500/80"></div>
+            <Image
+              src="/svg/mastercard.svg"
+              alt="Logo"
+              width={34}
+              height={34}
+              className={cn(
+                variant === "blue" && "",
+                variant === "white" && "brightness-75",
+                variant === "dark" && "",
+                className
+              )}
+            />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
