@@ -1,10 +1,12 @@
-import { Header } from "@/components/header"
-import { CardDisplay } from "@/components/card-display"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ChevronRight, DollarSign, Repeat, Send, UserRound } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { Header } from "@/components/header";
+import { CardDisplay } from "@/components/card-display";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ChevronRight, Send } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import RecentTransactions from "@/components/overview/recent-transactions";
+import CardsList from "@/components/overview/cards-list";
 
 export default function Dashboard() {
   return (
@@ -12,32 +14,9 @@ export default function Dashboard() {
       <Header title="Overview" />
 
       <div className="flex-1 space-y-8 p-6">
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold">My Cards</h2>
-            <Button variant="ghost" className="text-sm">
-              See All
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <CardDisplay
-              balance="$5,756"
-              cardHolder="Eddy Cusuma"
-              cardNumber="3778 **** **** 1234"
-              validThru="12/22"
-              variant="blue"
-            />
-
-            <CardDisplay
-              balance="$5,756"
-              cardHolder="Eddy Cusuma"
-              cardNumber="3778 **** **** 1234"
-              validThru="12/22"
-              variant="white"
-              className="hidden md:flex"
-            />
-          </div>
+        <div className="flex gap-[30px] overflow-x-auto whitespace-nowrap snap-x snap-mandatory pb-4 justify-between">
+          <CardsList />
+          <RecentTransactions />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -49,21 +28,32 @@ export default function Dashboard() {
               <CardContent>
                 <div className="h-[200px] flex items-end justify-between gap-2">
                   {/* Simplified chart representation */}
-                  {["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"].map((day, i) => (
-                    <div key={day} className="flex flex-col items-center gap-2 w-full">
-                      <div className="flex flex-col gap-1 w-full items-center">
-                        <div
-                          className="w-3 bg-primary rounded-full"
-                          style={{ height: `${Math.max(20, Math.random() * 150)}px` }}
-                        ></div>
-                        <div
-                          className="w-3 bg-teal-400 rounded-full"
-                          style={{ height: `${Math.max(20, Math.random() * 100)}px` }}
-                        ></div>
+                  {["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"].map(
+                    (day, i) => (
+                      <div
+                        key={day}
+                        className="flex flex-col items-center gap-2 w-full"
+                      >
+                        <div className="flex flex-col gap-1 w-full items-center">
+                          <div
+                            className="w-3 bg-primary rounded-full"
+                            style={{
+                              height: `${Math.max(20, Math.random() * 150)}px`,
+                            }}
+                          ></div>
+                          <div
+                            className="w-3 bg-teal-400 rounded-full"
+                            style={{
+                              height: `${Math.max(20, Math.random() * 100)}px`,
+                            }}
+                          ></div>
+                        </div>
+                        <span className="text-xs text-muted-foreground">
+                          {day}
+                        </span>
                       </div>
-                      <span className="text-xs text-muted-foreground">{day}</span>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
                 <div className="flex items-center justify-center gap-8 mt-4">
                   <div className="flex items-center gap-2">
@@ -89,16 +79,28 @@ export default function Dashboard() {
                     { name: "Randy Press", role: "Director" },
                     { name: "Workman", role: "Designer" },
                   ].map((person, i) => (
-                    <div key={i} className="flex flex-col items-center gap-1 min-w-[80px]">
+                    <div
+                      key={i}
+                      className="flex flex-col items-center gap-1 min-w-[80px]"
+                    >
                       <Avatar className="h-16 w-16">
-                        <AvatarImage src={`/placeholder.svg?height=64&width=64`} alt={person.name} />
+                        <AvatarImage
+                          src={`/placeholder.svg?height=64&width=64`}
+                          alt={person.name}
+                        />
                         <AvatarFallback>{person.name[0]}</AvatarFallback>
                       </Avatar>
                       <p className="text-sm font-medium">{person.name}</p>
-                      <p className="text-xs text-muted-foreground">{person.role}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {person.role}
+                      </p>
                     </div>
                   ))}
-                  <Button variant="outline" size="icon" className="rounded-full h-16 w-16 flex-shrink-0">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full h-16 w-16 flex-shrink-0"
+                  >
                     <ChevronRight className="h-6 w-6" />
                   </Button>
                 </div>
@@ -114,52 +116,6 @@ export default function Dashboard() {
           </div>
 
           <div className="space-y-6">
-            <Card>
-              <CardHeader className="pb-2">
-                <div className="flex items-center justify-between">
-                  <CardTitle>Recent Transaction</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {[
-                    {
-                      icon: <DollarSign className="h-5 w-5" />,
-                      name: "Deposit from my Card",
-                      date: "28 January 2021",
-                      amount: "-$850",
-                      color: "bg-yellow-100",
-                    },
-                    {
-                      icon: <Repeat className="h-5 w-5" />,
-                      name: "Deposit Paypal",
-                      date: "25 January 2021",
-                      amount: "+$2,500",
-                      color: "bg-blue-100",
-                    },
-                    {
-                      icon: <UserRound className="h-5 w-5" />,
-                      name: "Jemi Wilson",
-                      date: "21 January 2021",
-                      amount: "+$5,400",
-                      color: "bg-teal-100",
-                    },
-                  ].map((tx, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={`p-2 rounded-full ${tx.color}`}>{tx.icon}</div>
-                        <div>
-                          <p className="font-medium">{tx.name}</p>
-                          <p className="text-sm text-muted-foreground">{tx.date}</p>
-                        </div>
-                      </div>
-                      <p className={tx.amount.startsWith("+") ? "text-green-600" : "text-red-600"}>{tx.amount}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle>Expense Statistics</CardTitle>
@@ -227,6 +183,5 @@ export default function Dashboard() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
-

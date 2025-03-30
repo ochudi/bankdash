@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { 
-  CreditCard, Home, LayoutDashboard, Landmark, 
+  CreditCard, Home, Handshake, UserRound, 
   BarChart3, Banknote, Settings, ShoppingBag, Award, Menu 
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -16,8 +16,8 @@ export function Sidebar() {
 
   const routes = [
     { name: "Dashboard", path: "/", icon: <Home className="h-5 w-5" /> },
-    { name: "Transactions", path: "/transactions", icon: <LayoutDashboard className="h-5 w-5" /> },
-    { name: "Accounts", path: "/accounts", icon: <Landmark className="h-5 w-5" /> },
+    { name: "Transactions", path: "/transactions", icon: <Handshake className="h-5 w-5" /> },
+    { name: "Accounts", path: "/accounts", icon: <UserRound className="h-5 w-5" /> },
     { name: "Investments", path: "/investments", icon: <BarChart3 className="h-5 w-5" /> },
     { name: "Credit Cards", path: "/credit-cards", icon: <CreditCard className="h-5 w-5" /> },
     { name: "Loans", path: "/loans", icon: <Banknote className="h-5 w-5" /> },
@@ -55,8 +55,8 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
 
   const routes = [
     { name: "Dashboard", path: "/", icon: <Home className="h-5 w-5" /> },
-    { name: "Transactions", path: "/transactions", icon: <LayoutDashboard className="h-5 w-5" /> },
-    { name: "Accounts", path: "/accounts", icon: <Landmark className="h-5 w-5" /> },
+    { name: "Transactions", path: "/transactions", icon: <Handshake className="h-5 w-5" /> },
+    { name: "Accounts", path: "/accounts", icon: <UserRound className="h-5 w-5" /> },
     { name: "Investments", path: "/investments", icon: <BarChart3 className="h-5 w-5" /> },
     { name: "Credit Cards", path: "/credit-cards", icon: <CreditCard className="h-5 w-5" /> },
     { name: "Loans", path: "/loans", icon: <Banknote className="h-5 w-5" /> },
