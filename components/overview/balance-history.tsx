@@ -1,34 +1,63 @@
+"use client";
+
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+
+const data = [
+  { name: "Jul", value: 150 },
+  { name: "Aug", value: 250 },
+  { name: "Sep", value: 400 },
+  { name: "Oct", value: 800 },
+  { name: "Nov", value: 300 },
+  { name: "Dec", value: 600 },
+  { name: "Jan", value: 700 },
+];
 
 const BalanceHistory = () => {
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex">
-        <h2 className="text-xl font-semibold">Balance History</h2>
-      </div>
-      <Card>
-        <CardContent>
-          <div className="h-[200px] w-full relative">
-            {/* Simplified area chart */}
-            <svg viewBox="0 0 1000 200" className="w-full h-full">
-              <path
-                d="M0,150 C100,120 200,180 300,120 C400,60 500,180 600,90 C700,30 800,90 900,60 L900,200 L0,200 Z"
-                fill="rgba(37, 99, 235, 0.2)"
-                stroke="rgb(37, 99, 235)"
-                strokeWidth="2"
+    <div className="flex flex-col gap-4">
+      <h2 className="text-xl font-semibold">Balance History</h2>
+      <Card className="rounded-2xl p-4">
+        <CardContent className="w-full h-[255px] sm:h-[255px] flex items-center justify-center">
+          <ResponsiveContainer width="100%" height={248}>
+            <AreaChart data={data} margin={{ top: 40, right: 20, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="colorFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#1814F3" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#1814F3" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+              <XAxis dataKey="name" tick={{ fill: "#718EBF" }} tickLine={false} axisLine={false} />
+              <YAxis 
+                tick={{ fill: "#718EBF" }} 
+                tickLine={false} 
+                axisLine={false} 
+                domain={[0, (dataMax: number) => Math.ceil(dataMax * 1.2)]} // Prevents peak cutoff
               />
-            </svg>
-            <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-muted-foreground px-4">
-              <span>Jul</span>
-              <span>Aug</span>
-              <span>Sep</span>
-              <span>Oct</span>
-              <span>Nov</span>
-              <span>Dec</span>
-              <span>Jan</span>
-            </div>
-          </div>
+              <Tooltip 
+                cursor={{ fill: "#F3F4F6" }} 
+                contentStyle={{ borderRadius: "8px", backgroundColor: "white", border: "none" }} 
+                itemStyle={{ color: "#1814F3" }} 
+              />
+              <Area
+                type="monotone"
+                dataKey="value"
+                stroke="#1814F3"
+                strokeWidth={4}
+                fill="url(#colorFill)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         </CardContent>
       </Card>
     </div>
