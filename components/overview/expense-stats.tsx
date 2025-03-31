@@ -10,7 +10,6 @@ import {
 } from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
 
-// Sample Data
 const chartData = [
   { name: "Entertainment", value: 300, fill: "#343C6A" },
   { name: "Investment", value: 230, fill: "#FA00FF" },
@@ -18,7 +17,6 @@ const chartData = [
   { name: "Others", value: 70, fill: "#1814F3" },
 ];
 
-// Custom Tooltip Component
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
