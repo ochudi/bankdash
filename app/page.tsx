@@ -11,10 +11,14 @@ export default function Dashboard() {
     <div className="flex flex-col min-h-screen">
       <Header title="Overview" />
 
-      <div className="flex-1 space-y-8 p-6 mx-5">
-        <div className="flex gap-[30px] overflow-x-auto whitespace-nowrap snap-x snap-mandatory pb-4 justify-between">
-          <CardsList />
-          <RecentTransactions />
+      <div className="flex-1 space-y-8 p-6 md:mx-5">
+        <div className="flex justify-between flex-col lg:flex-row gap-6">
+          <div className="flex gap-[30px] overflow-x-auto whitespace-nowrap snap-x snap-mandatory pb-4 justify-between">
+            <CardsList />
+          </div>
+          <div>
+            <RecentTransactions />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
