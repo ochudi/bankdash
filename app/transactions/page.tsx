@@ -6,7 +6,7 @@ import RecentTransactionsTable from "@/components/transactions/recent-transactio
 export default function TransactionsPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header title="Overview" />
+      <Header title="Transactions" />
 
       <div className="flex-1 space-y-8 p-6 md:mx-5">
         <div className="flex justify-between flex-col lg:flex-row gap-6">

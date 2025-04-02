@@ -11,7 +11,7 @@ const CardsList = () => {
           See All
         </Button>
       </div>
-      <div className="flex gap-[30px]">
+      <div className="flex gap-[30px] overflow-x-auto">
         <CardDisplay
           balance="$5,756"
           cardHolder="Eddy Cusuma"
