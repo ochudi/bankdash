@@ -46,9 +46,9 @@ const LastTransaction = () => {
             ].map((tx, i) => (
               <div
                 key={i}
-                className="grid grid-cols-2 lg:grid-cols-6 gap-2 items-center"
+                className="grid grid-cols-2 lg:grid-cols-6 items-center"
               >
-                <div className="flex items-center gap-3 cols-span-1 lg:col-span-3">
+                <div className="flex items-center gap-3 cols-span-1 md:col-span-3 xl:col-span-2 xl:p-3">
                   <div className={`p-4 rounded-3xl ${tx.color}`}>{tx.icon}</div>
                   <div>
                     <p className="font-medium">{tx.title}</p>
