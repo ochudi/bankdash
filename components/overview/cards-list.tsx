@@ -28,6 +28,14 @@ const CardsList = () => {
           variant="white"
           className="hidden md:flex"
         />
+
+        <CardDisplay
+          balance="$5,756"
+          cardHolder="Eddy Cusuma"
+          cardNumber="3778 **** **** 1234"
+          validThru="12/22"
+          variant="dark"
+        />
       </div>
     </div>
   );

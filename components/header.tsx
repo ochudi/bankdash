@@ -1,24 +1,29 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Bell, Search, Settings, Menu, User } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { usePathname } from "next/navigation"
-import { ThemeToggle } from "@/components/theme-toggle"
-import Link from "next/link"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { useState } from "react";
+import { Bell, Search, Settings, Menu, User } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/theme-toggle";
+import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface HeaderProps {
-  title?: string
+  title?: string;
 }
 
 export function Header({ title }: HeaderProps) {
-  const pathname = usePathname()
-  const [searchOpen, setSearchOpen] = useState(false)
+  const pathname = usePathname();
+  const [searchOpen, setSearchOpen] = useState(false);
 
-  const pageTitle = title || pathname.split("/").pop() || "Dashboard"
+  const pageTitle = title || pathname.split("/").pop() || "Dashboard";
 
   return (
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
@@ -26,8 +31,7 @@ export function Header({ title }: HeaderProps) {
         <div className="flex items-center gap-3">
           <div className="lg:hidden pr-6" />
 
-          {/* Page Title */}
-          <h1 className="text-xl font-semibold capitalize">
+          <h1 className="text-xl font-semibold capitalize text-nowrap">
             {pageTitle === "" ? "Overview" : pageTitle}
           </h1>
         </div>
@@ -44,7 +48,12 @@ export function Header({ title }: HeaderProps) {
             />
           </div>
 
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setSearchOpen(true)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setSearchOpen(true)}
+          >
             <Search className="h-5 w-5" />
           </Button>
 
@@ -77,7 +86,11 @@ export function Header({ title }: HeaderProps) {
             </Link>
           </Button>
 
-          <Button variant="ghost" size="icon" className="relative hidden lg:flex">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="relative hidden lg:flex"
+          >
             <Bell className="h-5 w-5" />
             <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-destructive"></span>
           </Button>
@@ -106,5 +119,5 @@ export function Header({ title }: HeaderProps) {
         </div>
       )}
     </header>
-  )
+  );
 }
