@@ -1,5 +1,5 @@
 import { Header } from "@/components/header"
-import { StatCard } from "@/components/stat-card"
+import { ServiceCard } from "@/components/service-card"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Banknote, Briefcase, Heart, ShieldCheck, ShoppingBag, User } from "lucide-react"
@@ -11,21 +11,21 @@ export default function ServicesPage() {
 
       <div className="flex-1 space-y-8 p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <StatCard
+          <ServiceCard
             icon={<ShieldCheck className="h-6 w-6 text-blue-600" />}
             title="Life Insurance"
             value="Unlimited protection"
             iconColor="bg-blue-100"
           />
 
-          <StatCard
+          <ServiceCard
             icon={<ShoppingBag className="h-6 w-6 text-amber-600" />}
             title="Shopping"
             value="Buy. Think. Grow."
             iconColor="bg-amber-100"
           />
 
-          <StatCard
+          <ServiceCard
             icon={<Heart className="h-6 w-6 text-teal-600" />}
             title="Safety"
             value="We are your allies"
