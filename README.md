@@ -23,6 +23,9 @@ BankDash is a modern, responsive, and intuitive banking dashboard designed to ma
 - API Layer: REST / GraphQL  
 - UI Components: shadcn, Lucide icons, Recharts  
 
+## UI Preview
+![BankDash UI Preview](https://ik.imagekit.io/chewdee/bankdash.png?updatedAt=1744012831575)
+
 ## Getting Started  
 
 ### Clone the Repository  
